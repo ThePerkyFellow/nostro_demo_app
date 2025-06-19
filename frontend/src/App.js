@@ -153,6 +153,17 @@ function App() {
                 TaxGuru GST Payments FAQs
               </Link>
               .
+            <Typography sx={{ mt: 2 }}>
+              <b>API Backend:</b>{" "}
+              <Link
+                href="https://nostro-demo-app.onrender.com/"
+                target="_blank"
+                rel="noopener"
+              >
+                https://nostro-demo-app.onrender.com/
+              </Link>
+            </Typography>
+
             </Typography>
             <Button
               variant="outlined"
