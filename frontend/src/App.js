@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import {
   Container,
   Typography,
@@ -15,7 +14,6 @@ import {
   Step,
   StepLabel,
   Link,
-  CircularProgress,
   Snackbar,
   Alert,
 } from "@mui/material";
@@ -33,12 +31,235 @@ const steps = [
   "Download Challan",
 ];
 
-const API_URL = "https://nostro-demo-app.onrender.com";
+// Hardcoded nostro accounts data
+const hardcodedNostroAccounts = [
+  {
+    currency: "AED",
+    bankName: "EMIRATES BANK INTERNATIONAL PJSC",
+    swiftCode: "EBILAEADXXX",
+    accountNumber: "1261052966705",
+    beneficiaryBank: "ICICI Bank Ltd., Mumbai (India)",
+    iciciSwiftCode: "ICICINBBCTS"
+  },
+  {
+    currency: "AUD",
+    bankName: "JP MORGAN CHASE BANK, SYDNEY",
+    swiftCode: "CHASAU2XXXX",
+    accountNumber: "10039347",
+    beneficiaryBank: "ICICI Bank Ltd., Mumbai (India)",
+    iciciSwiftCode: "ICICINBBCTS"
+  },
+  {
+    currency: "BHD",
+    bankName: "AHLI UNITED BANK B.S.C. MANAMA BH",
+    swiftCode: "AUBBBHBMXXX",
+    accountNumber: "BH07AUBB00016596231001",
+    beneficiaryBank: "ICICI Bank Ltd., Mumbai (India)",
+    iciciSwiftCode: "ICICINBBCTS"
+  },
+  {
+    currency: "CAD",
+    bankName: "ROYAL BANK OF CANADA TORONTO",
+    swiftCode: "ROYCCAT2XXX",
+    accountNumber: "95911022482",
+    beneficiaryBank: "ICICI Bank Ltd., Mumbai (India)",
+    iciciSwiftCode: "ICICINBBCTS"
+  },
+  {
+    currency: "CHF",
+    bankName: "UBS Zurich",
+    swiftCode: "UBSWCHZH80A",
+    accountNumber: "02300000036549050000Y",
+    beneficiaryBank: "ICICI Bank Ltd., Mumbai (India)",
+    iciciSwiftCode: "ICICINBBCTS"
+  },
+  {
+    currency: "DKK",
+    bankName: "DEN DANSKE BANK COPENHAGEN",
+    swiftCode: "DABADKKKXXX",
+    accountNumber: "3996026914",
+    beneficiaryBank: "ICICI Bank Ltd., Mumbai (India)",
+    iciciSwiftCode: "ICICINBBCTS"
+  },
+  {
+    currency: "EUR",
+    bankName: "ICICI Bank UK PLC, GERMANY BRANCH",
+    swiftCode: "ICICDEFFXXX",
+    accountNumber: "0000484637",
+    beneficiaryBank: "ICICI Bank Ltd., Mumbai (India)",
+    iciciSwiftCode: "ICICINBBCTS",
+    iban: "DE56 5012 0100 0000 4846 37"
+  },
+  {
+    currency: "GBP",
+    bankName: "NATIONAL WESTMINSTER BANK LONDON",
+    swiftCode: "NWBKGB2LXXX",
+    accountNumber: "10001247",
+    beneficiaryBank: "ICICI Bank Ltd., Mumbai (India)",
+    iciciSwiftCode: "ICICINBBCTS",
+    sortCode: "0000600004"
+  },
+  {
+    currency: "HKD",
+    bankName: "HSBC HONG KONG",
+    swiftCode: "HSBCHKHHHKH",
+    accountNumber: "511639197001",
+    beneficiaryBank: "ICICI Bank Ltd., Mumbai (India)",
+    iciciSwiftCode: "ICICINBBCTS"
+  },
+  {
+    currency: "JPY",
+    bankName: "SUMITOMO BANKING CORPORATION",
+    swiftCode: "SMBCJPJTXXX",
+    accountNumber: "4296",
+    beneficiaryBank: "ICICI Bank Ltd., Mumbai (India)",
+    iciciSwiftCode: "ICICINBBCTS"
+  },
+  {
+    currency: "KRW",
+    bankName: "KEB HANA BANK",
+    swiftCode: "KOEXKRSEXXX",
+    accountNumber: "0963FRW001000072",
+    beneficiaryBank: "ICICI Bank Ltd., Mumbai (India)",
+    iciciSwiftCode: "ICICINBBCTS"
+  },
+  {
+    currency: "KWD",
+    bankName: "BURGAN BANK - KUWAIT",
+    swiftCode: "BRGNKWKWXXX",
+    accountNumber: "0201/00124070014004000",
+    beneficiaryBank: "ICICI Bank Ltd., Mumbai (India)",
+    iciciSwiftCode: "ICICINBBCTS"
+  },
+  {
+    currency: "MYR",
+    bankName: "CIMB Bank Berhad",
+    swiftCode: "CIBBMYKLXXX",
+    accountNumber: "14081195623050",
+    beneficiaryBank: "ICICI Bank Ltd., Mumbai (India)",
+    iciciSwiftCode: "ICICINBBCTS"
+  },
+  {
+    currency: "NOK",
+    bankName: "DNB NOR BANK ASA (FORMERLY DEN NORSKE BANK ASA)",
+    swiftCode: "DNBANOKKXXX",
+    accountNumber: "7001.02.04230",
+    beneficiaryBank: "ICICI Bank Ltd., Mumbai (India)",
+    iciciSwiftCode: "ICICINBBCTS"
+  },
+  {
+    currency: "NZD",
+    bankName: "ANZ National Bank limited",
+    swiftCode: "ANZBNZ22058",
+    accountNumber: "103705/00001",
+    beneficiaryBank: "ICICI Bank Ltd., Mumbai (India)",
+    iciciSwiftCode: "ICICINBBCTS"
+  },
+  {
+    currency: "OMR",
+    bankName: "SOHAR INTERNATIONAL BANK S.A.O.G",
+    swiftCode: "BSHROMRUXXX",
+    accountNumber: "1020106023",
+    beneficiaryBank: "ICICI Bank Ltd., Mumbai (India)",
+    iciciSwiftCode: "ICICINBBCTS"
+  },
+  {
+    currency: "PLN",
+    bankName: "MBANK S.A. (FORMERLY BRE BANK S.A.)",
+    swiftCode: "BREXPLPWXXX",
+    accountNumber: "PL90114000000000101939001002",
+    beneficiaryBank: "ICICI Bank Ltd., Mumbai (India)",
+    iciciSwiftCode: "ICICINBBCTS"
+  },
+  {
+    currency: "QAR",
+    bankName: "COMMERCIAL BANK OF QATAR",
+    swiftCode: "CBQAQAQAXXX",
+    accountNumber: "4010004124002",
+    beneficiaryBank: "ICICI Bank Ltd., Mumbai (India)",
+    iciciSwiftCode: "ICICINBBCTS"
+  },
+  {
+    currency: "SAR",
+    bankName: "RIYAD BANK BANK LTD. RIYADH",
+    swiftCode: "RIBLSARIXXX",
+    accountNumber: "9250015699940",
+    beneficiaryBank: "ICICI Bank Ltd., Mumbai (India)",
+    iciciSwiftCode: "ICICINBBCTS"
+  },
+  {
+    currency: "SEK",
+    bankName: "SKANDINAVISKA ENSKILDA BANKEN STOCKHOLM SE",
+    swiftCode: "ESSESESSXXX",
+    accountNumber: "52018562525",
+    beneficiaryBank: "ICICI Bank Ltd., Mumbai (India)",
+    iciciSwiftCode: "ICICINBBCTS"
+  },
+  {
+    currency: "SGD",
+    bankName: "JP MORGAN CHASE BANK N.A SINGAPORE",
+    swiftCode: "CHASSGSGXXX",
+    accountNumber: "111940147",
+    beneficiaryBank: "ICICI Bank Ltd., Mumbai (India)",
+    iciciSwiftCode: "ICICINBBCTS"
+  },
+  {
+    currency: "THB",
+    bankName: "SIAM COMMERCIAL BANK",
+    swiftCode: "SICOTHBKXXX",
+    accountNumber: "1113913091",
+    beneficiaryBank: "ICICI Bank Ltd., Mumbai (India)",
+    iciciSwiftCode: "ICICINBBCTS"
+  },
+  {
+    currency: "USD",
+    bankName: "CITI BANK N.A.",
+    swiftCode: "CITIUS33XXX",
+    accountNumber: "36329377",
+    beneficiaryBank: "ICICI Bank Ltd., Mumbai (India)",
+    iciciSwiftCode: "ICICINBBCTS",
+    abaFedNo: "021000089"
+  },
+  {
+    currency: "ZAR",
+    bankName: "STANDARD BANK OF SOUTH AFRICA LIMITED",
+    swiftCode: "SBZAZAJJXXX",
+    accountNumber: "7222151",
+    beneficiaryBank: "ICICI Bank Ltd., Mumbai (India)",
+    iciciSwiftCode: "ICICINBBCTS"
+  }
+];
 
+// Hardcoded forex rates
+const hardcodedForexRates = {
+  "USD": { "ttSellingRate": 86.7 },
+  "EUR": { "ttSellingRate": 99.06 },
+  "GBP": { "ttSellingRate": 116.36 },
+  "AUD": { "ttSellingRate": 55.91 },
+  "CAD": { "ttSellingRate": 62.84 },
+  "SGD": { "ttSellingRate": 66.32 },
+  "JPY": { "ttSellingRate": 61.38 },
+  "AED": { "ttSellingRate": 24.03 },
+  "CHF": { "ttSellingRate": 105.58 },
+  "SAR": { "ttSellingRate": 23.37 },
+  "QAR": { "ttSellingRate": 24.2 },
+  "SEK": { "ttSellingRate": 9.15 },
+  "DKK": { "ttSellingRate": 13.42 },
+  "NOK": { "ttSellingRate": 8.53 },
+  "NZD": { "ttSellingRate": 51.88 },
+  "HKD": { "ttSellingRate": 11.29 },
+  "KWD": { "ttSellingRate": 290.14 },
+  "THB": { "ttSellingRate": 2.62 },
+  "ZAR": { "ttSellingRate": 4.74 },
+  "OMR": { "ttSellingRate": 227.34 },
+  "KRW": { "ttSellingRate": 0.0619 },
+  "PLN": { "ttSellingRate": 23.51 },
+  "BHD": { "ttSellingRate": 232.78 },
+  "MYR": { "ttSellingRate": 20.53 }
+};
 
 function App() {
   const [step, setStep] = useState(1);
-  const [nostroAccounts, setNostroAccounts] = useState([]);
   const [form, setForm] = useState({
     remitterName: "",
     uin: "",
@@ -53,46 +274,50 @@ function App() {
     challanUploaded: false,
     charges: {},
   });
-  const [loading, setLoading] = useState(false);
   const [snack, setSnack] = useState({ open: false, message: "", severity: "success" });
-
-  useEffect(() => {
-    axios
-      .get(`${API_URL}/api/nostro-accounts`)
-      .then((res) => setNostroAccounts(res.data));
-  }, []);
 
   const handleInput = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleCurrencyChange = (e) => {
     const currency = e.target.value;
-    const nostro = nostroAccounts.find((n) => n.currency === currency) || {};
+    const nostro = hardcodedNostroAccounts.find((n) => n.currency === currency) || {};
     setForm({ ...form, currency, nostro });
   };
 
   const handleFile = (e) =>
     setForm({ ...form, challanFile: e.target.files[0] });
 
-  const uploadChallan = async () => {
-    setLoading(true);
-    const data = new FormData();
-    data.append("challan", form.challanFile);
-    await axios.post("http://localhost:4000/api/upload-challan", data);
+  const uploadChallan = () => {
+    // Dummy upload - just simulate success
     setForm({ ...form, challanUploaded: true });
-    setLoading(false);
-    setStep(step + 1);
+    setSnack({ open: true, message: "Challan uploaded successfully (Demo)", severity: "success" });
+    setTimeout(() => setStep(step + 1), 1000);
   };
 
-  const calculateCharges = async () => {
-    setLoading(true);
+  const calculateCharges = () => {
+    // Dummy calculation using hardcoded rates
     const { currency, amount } = form;
-    const res = await axios.post(
-      "http://localhost:4000/api/calculate-charges",
-      { currency, amount }
-    );
-    setForm({ ...form, charges: res.data });
-    setLoading(false);
+    const rate = hardcodedForexRates[currency]?.ttSellingRate || 1;
+    
+    // Example margin: 1% over TT Selling Rate
+    const marginRate = rate * 1.01;
+    const inrAmount = amount * marginRate;
+    const margin = (marginRate - rate) * amount;
+    const gst = margin * 0.18;
+    const totalCharges = margin + gst;
+
+    setForm({ 
+      ...form, 
+      charges: {
+        rate: rate.toFixed(2),
+        marginRate: marginRate.toFixed(2),
+        inrAmount: inrAmount.toFixed(2),
+        margin: margin.toFixed(2),
+        gst: gst.toFixed(2),
+        totalCharges: totalCharges.toFixed(2),
+      }
+    });
     setStep(step + 1);
   };
 
@@ -101,7 +326,7 @@ function App() {
     if (step > 1) setStep(step - 1);
   };
 
-  // Exit app handler (will only close if opened as popup)
+  // Exit app handler
   const handleExit = () => {
     window.close();
     setTimeout(() => alert("You can now close this tab."), 500);
@@ -109,17 +334,17 @@ function App() {
 
   // Mock FIRC/KYC generation
   const generateFIRC = () => {
-    setSnack({ open: true, message: "FIRC generated and available for download.", severity: "success" });
+    setSnack({ open: true, message: "FIRC generated and available for download (Demo).", severity: "success" });
   };
   const generateKYC = () => {
-    setSnack({ open: true, message: "KYC document generated and available for download.", severity: "success" });
+    setSnack({ open: true, message: "KYC document generated and available for download (Demo).", severity: "success" });
   };
 
   return (
     <Container maxWidth="md" sx={{ mt: 5, mb: 5 }}>
       <Paper elevation={4} sx={{ p: 4 }}>
         <Typography variant="h4" align="center" gutterBottom sx={{ fontWeight: 700 }}>
-          International Tax Payment Demo
+          OIDAR International Tax Payment Demo
         </Typography>
         <Stepper activeStep={step - 1} alternativeLabel sx={{ mb: 3 }}>
           {steps.map((label) => (
@@ -141,7 +366,7 @@ function App() {
                 <Link href="https://www.gst.gov.in" target="_blank" rel="noopener">
                   gst.gov.in
                 </Link>{" "}
-                and fill the Challan form for tax payment.
+                and fill the Challan form for OIDAR tax payment.
               </b>
               <br />
               Download the generated GST Challan PDF.
@@ -156,17 +381,9 @@ function App() {
                 TaxGuru GST Payments FAQs
               </Link>
               .
-            <Typography sx={{ mt: 2 }}>
-              <b>API Backend:</b>{" "}
-              <Link
-                href="https://nostro-demo-app.onrender.com/"
-                target="_blank"
-                rel="noopener"
-              >
-                https://nostro-demo-app.onrender.com/
-              </Link>
             </Typography>
-
+            <Typography sx={{ mt: 2 }}>
+              <b>Demo Mode:</b> This is a standalone demo version with hardcoded data for concept demonstration.
             </Typography>
             <Button
               variant="outlined"
@@ -207,7 +424,6 @@ function App() {
                 name="uin"
                 value={form.uin}
                 onChange={e => {
-                  // Allow only alphanumeric, max 15 chars
                   const val = e.target.value.replace(/[^a-zA-Z0-9]/g, '').slice(0, 15);
                   setForm({ ...form, uin: val });
                 }}
@@ -234,7 +450,6 @@ function App() {
                 name="bankAccount"
                 value={form.bankAccount}
                 onChange={e => {
-                  // Allow only numbers, max 18 digits
                   const val = e.target.value.replace(/\D/g, '').slice(0, 18);
                   setForm({ ...form, bankAccount: val });
                 }}
@@ -247,7 +462,6 @@ function App() {
                 name="relationshipPeriod"
                 value={form.relationshipPeriod}
                 onChange={e => {
-                  // Allow only numbers
                   const val = e.target.value.replace(/\D/g, '');
                   setForm({ ...form, relationshipPeriod: val });
                 }}
@@ -294,7 +508,7 @@ function App() {
                   <MenuItem value="">
                     <em>Select Currency</em>
                   </MenuItem>
-                  {nostroAccounts.map((n) => (
+                  {hardcodedNostroAccounts.map((n) => (
                     <MenuItem key={n.currency} value={n.currency}>
                       {n.currency}
                     </MenuItem>
@@ -307,7 +521,6 @@ function App() {
                 type="number"
                 value={form.amount}
                 onChange={e => {
-                  // Allow only numbers
                   const val = e.target.value.replace(/\D/g, '');
                   setForm({ ...form, amount: val });
                 }}
@@ -378,11 +591,11 @@ function App() {
         {step === 4 && (
           <Box>
             <Typography variant="h5" gutterBottom>
-              Step 4: Upload GST Challan
+              Step 4: Upload GST Challan (Demo)
             </Typography>
             <Box mt={2}>
               <Button variant="contained" component="label">
-                {form.challanFile ? form.challanFile.name : "Choose PDF"}
+                {form.challanFile ? form.challanFile.name : "Choose PDF (Demo)"}
                 <input
                   type="file"
                   accept="application/pdf"
@@ -394,6 +607,9 @@ function App() {
                 <Typography sx={{ mt: 1 }}>{form.challanFile.name}</Typography>
               )}
             </Box>
+            <Typography variant="body2" sx={{ mt: 2, fontStyle: "italic" }}>
+              * This is a demo upload. In the real application, the file would be processed and validated.
+            </Typography>
             <Button
               variant="outlined"
               color="secondary"
@@ -408,9 +624,9 @@ function App() {
               color="primary"
               sx={{ mt: 3 }}
               onClick={uploadChallan}
-              disabled={!form.challanFile || loading}
+              disabled={!form.challanFile}
             >
-              {loading ? <CircularProgress size={24} /> : "Upload & Next"}
+              Upload & Next (Demo)
             </Button>
           </Box>
         )}
@@ -423,7 +639,7 @@ function App() {
             </Typography>
             <Typography paragraph sx={{ mt: 2 }}>
               Please instruct your bank to send the specified amount in{" "}
-              <b>{form.currency}</b> to the Nostro account below.
+              <b>{form.currency}</b> to the Nostro account above.
               <br />
               Use SWIFT message <b>MT103+REMIT</b> or <b>MT103+STP</b>.
               <br />
@@ -431,7 +647,6 @@ function App() {
               <br />
               <b>Purpose of Remittance:</b> OIDAR Tax Payment
             </Typography>
-            {/* Replace image with your table */}
             <Box sx={{ mt: 2, mb: 2 }}>
               <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
                 Remittance Instruction Table
@@ -490,10 +705,9 @@ function App() {
               variant="contained"
               color="primary"
               onClick={calculateCharges}
-              disabled={loading}
               sx={{ mt: 2 }}
             >
-              {loading ? <CircularProgress size={24} /> : "I've Sent the Funds"}
+              I've Sent the Funds (Demo)
             </Button>
           </Box>
         )}
@@ -520,6 +734,9 @@ function App() {
                 <b>Total Charges:</b> {form.charges.totalCharges}
               </Typography>
             </Paper>
+            <Typography variant="body2" sx={{ mt: 2, fontStyle: "italic" }}>
+              * These are demo calculations based on hardcoded forex rates.
+            </Typography>
             <Button
               variant="outlined"
               color="secondary"
@@ -603,7 +820,7 @@ function App() {
             </Typography>
             <Paper elevation={2} sx={{ p: 3, mb: 3, backgroundColor: "#f5f5f5" }}>
               <Typography variant="h6" gutterBottom>
-                Generate Additional Documents
+                Generate Additional Documents (Demo)
               </Typography>
               <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}>
                 <Button
@@ -612,7 +829,7 @@ function App() {
                   startIcon={<DescriptionIcon />}
                   onClick={generateFIRC}
                 >
-                  Generate FIRC on Security Paper
+                  Generate FIRC on Security Paper (Demo)
                 </Button>
                 <Typography variant="body2" sx={{ ml: 1 }}>
                   The Foreign Inward Remittance Certificate (FIRC) serves as proof of your international tax payment.
@@ -623,13 +840,13 @@ function App() {
                   startIcon={<VerifiedUserIcon />}
                   onClick={generateKYC}
                 >
-                  Generate KYC on Bank Letterhead
+                  Generate KYC on Bank Letterhead (Demo)
                 </Button>
                 <Typography variant="body2" sx={{ ml: 1 }}>
                   KYC document on bank letterhead serves as confirmation of your identity verification.
                 </Typography>
                 <Typography variant="caption" sx={{ mt: 1, fontStyle: "italic" }}>
-                  * Documents will be generated immediately and available for download before closing the app.
+                  * This is a demo version. In the real application, documents would be generated and available for download.
                 </Typography>
               </Box>
             </Paper>
@@ -651,14 +868,14 @@ function App() {
               Exit App
             </Button>
             <Typography align="center" sx={{ mt: 2 }}>
-              Thank you!
+              Thank you for trying the OIDAR Demo!
             </Typography>
           </Box>
         )}
       </Paper>
       <Snackbar
         open={snack.open}
-        autoHideDuration={2000}
+        autoHideDuration={3000}
         onClose={() => setSnack({ ...snack, open: false })}
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       >
