@@ -1,0 +1,204 @@
+[
+    {
+      "currency": "AED",
+      "bankName": "EMIRATES BANK INTERNATIONAL PJSC",
+      "swiftCode": "EBILAEADXXX",
+      "accountNumber": "1261052966705",
+      "beneficiaryBank": "ICICI Bank Ltd., Mumbai (India)",
+      "iciciSwiftCode": "ICICINBBCTS"
+    },
+    {
+      "currency": "AUD",
+      "bankName": "JP MORGAN CHASE BANK, SYDNEY",
+      "swiftCode": "CHASAU2XXXX",
+      "accountNumber": "10039347",
+      "beneficiaryBank": "ICICI Bank Ltd., Mumbai (India)",
+      "iciciSwiftCode": "ICICINBBCTS"
+    },
+    {
+      "currency": "BHD",
+      "bankName": "AHLI UNITED BANK B.S.C. MANAMA BH",
+      "swiftCode": "AUBBBHBMXXX",
+      "accountNumber": "BH07AUBB00016596231001",
+      "beneficiaryBank": "ICICI Bank Ltd., Mumbai (India)",
+      "iciciSwiftCode": "ICICINBBCTS"
+    },
+    {
+      "currency": "CAD",
+      "bankName": "ROYAL BANK OF CANADA TORONTO",
+      "swiftCode": "ROYCCAT2XXX",
+      "accountNumber": "95911022482",
+      "beneficiaryBank": "ICICI Bank Ltd., Mumbai (India)",
+      "iciciSwiftCode": "ICICINBBCTS"
+    },
+    {
+      "currency": "CHF",
+      "bankName": "UBS Zurich",
+      "swiftCode": "UBSWCHZH80A",
+      "accountNumber": "02300000036549050000Y",
+      "beneficiaryBank": "ICICI Bank Ltd., Mumbai (India)",
+      "iciciSwiftCode": "ICICINBBCTS"
+    },
+    {
+      "currency": "DKK",
+      "bankName": "DEN DANSKE BANK COPENHAGEN",
+      "swiftCode": "DABADKKKXXX",
+      "accountNumber": "3996026914",
+      "beneficiaryBank": "ICICI Bank Ltd., Mumbai (India)",
+      "iciciSwiftCode": "ICICINBBCTS"
+    },
+    {
+      "currency": "EUR",
+      "bankName": "ICICI Bank UK PLC, GERMANY BRANCH",
+      "swiftCode": "ICICDEFFXXX",
+      "accountNumber": "0000484637",
+      "beneficiaryBank": "ICICI Bank Ltd., Mumbai (India)",
+      "iciciSwiftCode": "ICICINBBCTS",
+      "additionalInfo": {
+        "iban": "DE56 5012 0100 0000 4846 37"
+      }
+    },
+    {
+      "currency": "GBP",
+      "bankName": "NATIONAL WESTMINSTER BANK LONDON",
+      "swiftCode": "NWBKGB2LXXX",
+      "accountNumber": "10001247",
+      "beneficiaryBank": "ICICI Bank Ltd., Mumbai (India)",
+      "iciciSwiftCode": "ICICINBBCTS",
+      "additionalInfo": {
+        "sortCode": "0000600004"
+      }
+    },
+    {
+      "currency": "HKD",
+      "bankName": "HSBC HONG KONG",
+      "swiftCode": "HSBCHKHHHKH",
+      "accountNumber": "511639197001",
+      "beneficiaryBank": "ICICI Bank Ltd., Mumbai (India)",
+      "iciciSwiftCode": "ICICINBBCTS"
+    },
+    {
+      "currency": "JPY",
+      "bankName": "SUMITOMO BANKING CORPORATION",
+      "swiftCode": "SMBCJPJTXXX",
+      "accountNumber": "4296",
+      "beneficiaryBank": "ICICI Bank Ltd., Mumbai (India)",
+      "iciciSwiftCode": "ICICINBBCTS"
+    },
+    {
+      "currency": "KRW",
+      "bankName": "KEB HANA BANK",
+      "swiftCode": "KOEXKRSEXXX",
+      "accountNumber": "0963FRW001000072",
+      "beneficiaryBank": "ICICI Bank Ltd., Mumbai (India)",
+      "iciciSwiftCode": "ICICINBBCTS"
+    },
+    {
+      "currency": "KWD",
+      "bankName": "BURGAN BANK - KUWAIT",
+      "swiftCode": "BRGNKWKWXXX",
+      "accountNumber": "0201/00124070014004000",
+      "beneficiaryBank": "ICICI Bank Ltd., Mumbai (India)",
+      "iciciSwiftCode": "ICICINBBCTS"
+    },
+    {
+      "currency": "MYR",
+      "bankName": "CIMB Bank Berhad",
+      "swiftCode": "CIBBMYKLXXX",
+      "accountNumber": "14081195623050",
+      "beneficiaryBank": "ICICI Bank Ltd., Mumbai (India)",
+      "iciciSwiftCode": "ICICINBBCTS"
+    },
+    {
+      "currency": "NOK",
+      "bankName": "DNB NOR BANK ASA (FORMERLY DEN NORSKE BANK ASA)",
+      "swiftCode": "DNBANOKKXXX",
+      "accountNumber": "7001.02.04230",
+      "beneficiaryBank": "ICICI Bank Ltd., Mumbai (India)",
+      "iciciSwiftCode": "ICICINBBCTS"
+    },
+    {
+      "currency": "NZD",
+      "bankName": "ANZ National Bank limited",
+      "swiftCode": "ANZBNZ22058",
+      "accountNumber": "103705/00001",
+      "beneficiaryBank": "ICICI Bank Ltd., Mumbai (India)",
+      "iciciSwiftCode": "ICICINBBCTS"
+    },
+    {
+      "currency": "OMR",
+      "bankName": "SOHAR INTERNATIONAL BANK S.A.O.G",
+      "swiftCode": "BSHROMRUXXX",
+      "accountNumber": "1020106023",
+      "beneficiaryBank": "ICICI Bank Ltd., Mumbai (India)",
+      "iciciSwiftCode": "ICICINBBCTS"
+    },
+    {
+      "currency": "PLN",
+      "bankName": "MBANK S.A. (FORMERLY BRE BANK S.A.)",
+      "swiftCode": "BREXPLPWXXX",
+      "accountNumber": "PL90114000000000101939001002",
+      "beneficiaryBank": "ICICI Bank Ltd., Mumbai (India)",
+      "iciciSwiftCode": "ICICINBBCTS"
+    },
+    {
+      "currency": "QAR",
+      "bankName": "COMMERCIAL BANK OF QATAR",
+      "swiftCode": "CBQAQAQAXXX",
+      "accountNumber": "4010004124002",
+      "beneficiaryBank": "ICICI Bank Ltd., Mumbai (India)",
+      "iciciSwiftCode": "ICICINBBCTS"
+    },
+    {
+      "currency": "SAR",
+      "bankName": "RIYAD BANK BANK LTD. RIYADH",
+      "swiftCode": "RIBLSARIXXX",
+      "accountNumber": "9250015699940",
+      "beneficiaryBank": "ICICI Bank Ltd., Mumbai (India)",
+      "iciciSwiftCode": "ICICINBBCTS"
+    },
+    {
+      "currency": "SEK",
+      "bankName": "SKANDINAVISKA ENSKILDA BANKEN STOCKHOLM SE",
+      "swiftCode": "ESSESESSXXX",
+      "accountNumber": "52018562525",
+      "beneficiaryBank": "ICICI Bank Ltd., Mumbai (India)",
+      "iciciSwiftCode": "ICICINBBCTS"
+    },
+    {
+      "currency": "SGD",
+      "bankName": "JP MORGAN CHASE BANK N.A SINGAPORE",
+      "swiftCode": "CHASSGSGXXX",
+      "accountNumber": "111940147",
+      "beneficiaryBank": "ICICI Bank Ltd., Mumbai (India)",
+      "iciciSwiftCode": "ICICINBBCTS"
+    },
+    {
+      "currency": "THB",
+      "bankName": "SIAM COMMERCIAL BANK",
+      "swiftCode": "SICOTHBKXXX",
+      "accountNumber": "1113913091",
+      "beneficiaryBank": "ICICI Bank Ltd., Mumbai (India)",
+      "iciciSwiftCode": "ICICINBBCTS"
+    },
+    {
+      "currency": "USD",
+      "bankName": "CITI BANK N.A.",
+      "swiftCode": "CITIUS33XXX",
+      "accountNumber": "36329377",
+      "beneficiaryBank": "ICICI Bank Ltd., Mumbai (India)",
+      "iciciSwiftCode": "ICICINBBCTS",
+      "additionalInfo": {
+        "abaFedNo": "021000089"
+      }
+    },
+    {
+      "currency": "ZAR",
+      "bankName": "STANDARD BANK OF SOUTH AFRICA LIMITED",
+      "swiftCode": "SBZAZAJJXXX",
+      "accountNumber": "7222151",
+      "beneficiaryBank": "ICICI Bank Ltd., Mumbai (India)",
+      "iciciSwiftCode": "ICICINBBCTS"
+    }
+  ]
+  

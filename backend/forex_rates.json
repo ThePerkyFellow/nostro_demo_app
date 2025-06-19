@@ -1,0 +1,28 @@
+{
+    "USD": { "ttSellingRate": 86.7 },
+    "EUR": { "ttSellingRate": 99.06 },
+    "GBP": { "ttSellingRate": 116.36 },
+    "AUD": { "ttSellingRate": 55.91 },
+    "CAD": { "ttSellingRate": 62.84 },
+    "SGD": { "ttSellingRate": 66.32 },
+    "JPY": { "ttSellingRate": 61.38 },
+    "AED": { "ttSellingRate": 24.03 },
+    "CHF": { "ttSellingRate": 105.58 },
+    "SAR": { "ttSellingRate": 23.37 },
+    "QAR": { "ttSellingRate": 24.2 },
+    "SEK": { "ttSellingRate": 9.15 },
+    "DKK": { "ttSellingRate": 13.42 },
+    "NOK": { "ttSellingRate": 8.53 },
+    "NZD": { "ttSellingRate": 51.88 },
+    "HKD": { "ttSellingRate": 11.29 },
+    "KWD": { "ttSellingRate": 290.14 },
+    "THB": { "ttSellingRate": 2.62 },
+    "ZAR": { "ttSellingRate": 4.74 },
+    "OMR": { "ttSellingRate": 227.34 },
+    "KRW": { "ttSellingRate": 0.0619 },
+    "CNH": { "ttSellingRate": 12.23 },
+    "PLN": { "ttSellingRate": 23.51 },
+    "BHD": { "ttSellingRate": 232.78 },
+    "MYR": { "ttSellingRate": 20.53 }
+  }
+  

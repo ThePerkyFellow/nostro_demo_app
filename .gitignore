@@ -1,7 +1,7 @@
 # Dependencies
 /backend/node_modules
 /frontend/node_modules
-/node_modules # For any root-level node_modules, just in case
+/node_modules # This line ignores any root-level node_modules, just in case
 
 # Build and temporary files
 /frontend/build
