@@ -5,6 +5,13 @@ const cors = require('cors');
 const app = express();
 const PORT = 4000;
 
+const corsOptions = {
+  origin: 'https://theperkyfellow.github.io',
+  optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
+
+
 app.use(cors());
 app.use(express.json());
 
