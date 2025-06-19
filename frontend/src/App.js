@@ -33,6 +33,9 @@ const steps = [
   "Download Challan",
 ];
 
+const API_URL = "https://nostro-demo-app.onrender.com";
+
+
 function App() {
   const [step, setStep] = useState(1);
   const [nostroAccounts, setNostroAccounts] = useState([]);
@@ -55,7 +58,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/api/nostro-accounts")
+      .get(`${API_URL}/api/nostro-accounts`)
       .then((res) => setNostroAccounts(res.data));
   }, []);
 
